@@ -10,6 +10,10 @@ services:
     links:
       - node_two
       - node_three
+    volumes:
+      - ./config:/config
+    command: sh -c "redis-server /config/redis_node_one.conf &&\
+                    redis-server /config/sentinel_node_one.conf - sentinel"
 
   node_two:
     container_name: node_two
@@ -17,6 +21,8 @@ services:
     expose:
       - "6380"
       - "26380"
+    volumes:
+      - ./config:/config
 
   node_three:
     container_name: node_three
@@ -24,3 +30,5 @@ services:
     expose:
       - "6381"
       - "26381"
+    volumes:
+      - ./config:/config
