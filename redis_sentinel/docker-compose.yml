@@ -1,0 +1,26 @@
+version: "3.7"
+
+services:
+  node_one:
+    container_name: node_one
+    build: ./
+    expose:
+      - "6379"
+      - "26379"
+    links:
+      - node_two
+      - node_three
+
+  node_two:
+    container_name: node_two
+    build: ./
+    expose:
+      - "6380"
+      - "26380"
+
+  node_three:
+    container_name: node_three
+    build: ./
+    expose:
+      - "6381"
+      - "26381"
